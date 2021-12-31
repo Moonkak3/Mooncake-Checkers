@@ -103,9 +103,9 @@ public class Token : MonoBehaviour
                 }
                 break;
 
-            case Map.Tool.Delete:
-                Board.GetActions().Add(new DeleteToken(gameObject, coords));
-                break;
+            //case Map.Tool.Delete:
+            //    Board.GetActions().Add(new DeleteToken(gameObject, coords));
+            //    break;
             case Map.Tool.Vaccine:
                 Board.GetActions().Add(new Vaccinate(colorInt));
                 break;

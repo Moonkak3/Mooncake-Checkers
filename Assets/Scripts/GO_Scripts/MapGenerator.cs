@@ -71,8 +71,8 @@ public class MapGenerator : MonoBehaviour
                 if (Board.GetStartingSpot(coords) != 0)
                 {
                     tempHexTile.transform.parent = homeField.transform;
-                    tempHexTile.GetComponent<Renderer>().material.color = (colorPairing[Board.GetStartingSpot(coords)] + Color.white + Color.white) / 3.0f;
-                    tempHexTile.GetComponent<Hexagon>().color = (colorPairing[Board.GetStartingSpot(coords)] + Color.white + Color.white) / 3.0f;
+                    tempHexTile.GetComponent<Renderer>().material.color = (colorPairing[Board.GetStartingSpot(coords)] + Color.white) / 2.0f;
+                    tempHexTile.GetComponent<Hexagon>().color = (colorPairing[Board.GetStartingSpot(coords)] + Color.white) / 2.0f;
                     if (Board.turnColors[Board.NumPlayers].Contains(Board.GetSpot(coords))){
                         tempToken = Instantiate(TokenPrefab);
                     }
