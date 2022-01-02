@@ -6,13 +6,15 @@ public class Move : Action
     private JumpBoost jumpBoost;
     private Vector2Int start, end;
     private bool firstMove;
+    private bool walked;
 
-    public Move(GameObject movedTokenPrefab, Vector2Int start, Vector2Int end, bool firstMove)
+    public Move(GameObject movedTokenPrefab, Vector2Int start, Vector2Int end, bool firstMove, bool walked)
     {
         this.movedTokenPrefab = movedTokenPrefab;
         this.start = start;
         this.end = end;
         this.firstMove = firstMove;
+        this.walked = walked;
     }
 
     public void DoAction()
@@ -22,6 +24,7 @@ public class Move : Action
         Board.SetSpot(start, 0);
         Board.Turn = movedTokenPrefab.GetComponent<Token>().colorInt;
         Board.movedTokenPrefab = movedTokenPrefab;
+        Board.walked = walked;
     }
 
     public void UndoAction()
@@ -32,6 +35,7 @@ public class Move : Action
         if (firstMove)
         {
             Board.Turn = -1;
+            Board.walked = false;
         }
     }
 }

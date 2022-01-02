@@ -8,6 +8,7 @@ public static class Board
     public static readonly int[,] boardArray;
     private static readonly Actions actions;
     public static GameObject movedTokenPrefab;
+    public static bool walked;
     public static Vector2Int SelectedCoords { get; set; }
     public static int NumPlayers { get; set; }
     public static int Turn { get; set; }
@@ -120,7 +121,8 @@ public static class Board
         {
             return false;
         }
-        actions.Add(new Move(tokenPrefab, SelectedCoords, moveCoords, Turn==-1));
+        walked = Math.Abs(moveCoords.x - SelectedCoords.x) == 1 || Math.Abs(moveCoords.y - SelectedCoords.y) == 1;
+        actions.Add(new Move(tokenPrefab, SelectedCoords, moveCoords, Turn==-1, walked));
         return true;
     }
 
@@ -160,7 +162,7 @@ public static class Board
             if (tokens == 1 || (tokens == 2 && tokenPrefab.GetComponent<Token>().jumpBoosted))
             {
                 middle /= blockages;
-                return (middle.x - SelectedCoords.x == moveCoords.x - middle.x && Turn == -1);
+                return middle.x - SelectedCoords.x == moveCoords.x - middle.x && !walked;
             }
             else return (Math.Abs(moveCoords.x - SelectedCoords.x) == 1 && Turn == -1);
         }
@@ -192,7 +194,7 @@ public static class Board
             if (tokens == 1 || (tokens == 2 && tokenPrefab.GetComponent<Token>().jumpBoosted))
             {
                 middle /= blockages;
-                return (middle.y - SelectedCoords.y == moveCoords.y - middle.y && Turn == -1);
+                return middle.y - SelectedCoords.y == moveCoords.y - middle.y && !walked;
             }
             else return (Math.Abs(moveCoords.y - SelectedCoords.y) == 1 && Turn == -1);
         }
@@ -224,7 +226,7 @@ public static class Board
             if (tokens == 1 || (tokens == 2 && tokenPrefab.GetComponent<Token>().jumpBoosted))
             {
                 middle /= blockages;
-                return (middle.x - SelectedCoords.x == moveCoords.x - middle.x && Turn == -1);
+                return middle.x - SelectedCoords.x == moveCoords.x - middle.x && !walked;
             }
             else return (Math.Abs(moveCoords.x - SelectedCoords.x) == 1 && Turn == -1);
         }
@@ -242,7 +244,7 @@ public static class Board
         {
             return;
         }
-        actions.Add(new Turn(movedTokenPrefab, Turn));
+        actions.Add(new Turn(movedTokenPrefab, Turn, walked));
     }
 
 
