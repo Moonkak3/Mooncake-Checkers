@@ -160,7 +160,7 @@ public static class Board
             if (tokens == 1 || (tokens == 2 && tokenPrefab.GetComponent<Token>().jumpBoosted))
             {
                 middle /= blockages;
-                return middle.x - SelectedCoords.x == moveCoords.x - middle.x;
+                return (middle.x - SelectedCoords.x == moveCoords.x - middle.x && Turn == -1);
             }
             else return (Math.Abs(moveCoords.x - SelectedCoords.x) == 1 && Turn == -1);
         }
@@ -192,7 +192,7 @@ public static class Board
             if (tokens == 1 || (tokens == 2 && tokenPrefab.GetComponent<Token>().jumpBoosted))
             {
                 middle /= blockages;
-                return middle.y - SelectedCoords.y == moveCoords.y - middle.y;
+                return (middle.y - SelectedCoords.y == moveCoords.y - middle.y && Turn == -1);
             }
             else return (Math.Abs(moveCoords.y - SelectedCoords.y) == 1 && Turn == -1);
         }
@@ -224,7 +224,7 @@ public static class Board
             if (tokens == 1 || (tokens == 2 && tokenPrefab.GetComponent<Token>().jumpBoosted))
             {
                 middle /= blockages;
-                return middle.x - SelectedCoords.x == moveCoords.x - middle.x;
+                return (middle.x - SelectedCoords.x == moveCoords.x - middle.x && Turn == -1);
             }
             else return (Math.Abs(moveCoords.x - SelectedCoords.x) == 1 && Turn == -1);
         }

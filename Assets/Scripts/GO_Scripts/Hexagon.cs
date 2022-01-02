@@ -32,12 +32,12 @@ public class Hexagon : MonoBehaviour
                 Board.Move(tokenPrefab, coords);
                 break;
             case Map.Tool.Add:
-                if (transform.childCount != 0 || color == Map.homeColor || safeEntryActivated) { return; }
+                if (transform.childCount != 0 || color != Map.neutralColor || safeEntryActivated) { return; }
                 GameObject wall = Map.mapGenerator.wallPrefab;
                 Board.GetActions().Add(new ChangeTile(coords, hex, wall, (int) Board.PieceTypes.Empty, (int) Board.PieceTypes.Wall));
                 break;
             case Map.Tool.Delete:
-                if (transform.childCount != 0 || color == Map.homeColor || safeEntryActivated) { return; }
+                if (transform.childCount != 0 || color != Map.neutralColor || safeEntryActivated) { return; }
                 GameObject invisHex = Map.mapGenerator.invisHexPrefab;
                 Board.GetActions().Add(new ChangeTile(coords, hex, invisHex, (int) Board.PieceTypes.Empty, (int)Board.PieceTypes.Hole));
                 break;

@@ -114,7 +114,14 @@ public static class Map
             else if (go.GetComponent<Hexagon>() != null)
             {
                 coords = go.GetComponent<Hexagon>().coords;
-                Board.SetSpot(coords, (int)Board.PieceTypes.Empty);
+                if (go.GetComponent<Hexagon>().safeEntryActivated)
+                {
+                    Board.SetSpot(coords, (int)Board.PieceTypes.SafeEntry);
+                }
+                else
+                {
+                    Board.SetSpot(coords, (int)Board.PieceTypes.Empty);
+                }
             }
             if (coords != new Vector2Int(-1, -1))
             {
